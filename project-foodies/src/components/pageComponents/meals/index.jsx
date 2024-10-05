@@ -2,7 +2,9 @@ import Link from 'next/link';
 
 import { getMeals } from '../../../lib/meals';
 
+import { Suspense } from 'react';
 import MealsGrid from '../../structures/meals/meals-grid';
+import { MealsLoadingPage } from './loading-out';
 import classes from './page.module.css';
 
 async function Meals() {
@@ -27,7 +29,9 @@ export function MealsPage() {
         </p>
       </header>
       <main className={classes.main}>
-        <Meals />
+        <Suspense fallback={<MealsLoadingPage />}>
+          <Meals />
+        </Suspense>
       </main>
     </>
   );
